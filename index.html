@@ -7,33 +7,61 @@
     <meta name="keywords" content="Проект, Практика, Яндекс.Практикум">
     <meta name="author" content="Андрей Кизилов">
     <link rel="stylesheet" href="./pages/index.css">
-    <title>Путешествия по России</title>
+    <title>Место</title>
   </head>
   <body class="page">
     <header class="header">
-      <img class="header__logo" src="./images/header-logo.svg" alt="Логотип Карта">
-      <a href="#" class="header__lang-link header__lang-link_active">Ru</a>
-      <a href="#" class="header__lang-link">En</a>
+      <img class="header__logo" src="./images/logo.png" alt="Логотип">
     </header>
     <main>
-      <section class="lead">
-        <h1 class="lead__title">Путешествия по&nbsp;России</h1>
-        <p class="lead__subtitle">Настоящая страна не в выпусках новостей, а здесь.</p>
-          <img class="lead__image" src="./images/lead-polka.jpg" alt="Карта путешествия">
-          <p class="lead__caption">Ваша полка — верхняя</p>
-          <!--Попробовал использовать тэги figure и figcaption, но тогда автоматически задаются margin и чтобы 
-            обнулить их приходится только ради этого задавать новый класс обертке и соответсвенно правило в стилях-->
+      <section class="profile">
+          <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар">
+          <div class="profile__info">
+            <p class="profile__name">Жак-Ив Кусто</p>
+            <p class="profile__profession">Исследователь океана</p>
+            <div class="profile__button_edit">
+              <img class="profile__button_edit-image"src="./images/slesh.png" alt="Редактировать">
+            </div>
+          </div>
+        <div class="profile__button_add">
+          <img class="profile__button_add-image" src="./images/plus.png" alt="Добавить">
+        </div>
+      </section>
+      <section class="elements">
+            <div class="elements__rectangle">
+              <img class="elements__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
+              <p class="elements__text">Карачаевск</p>
+              <img class="elements__image_like" src="./images/like.svg" alt="Нравится">
+            </div>
+            <div class="elements__rectangle">
+              <img class="elements__image" src="./images/elbrus.png" alt="Эльбрус">
+              <p class="elements__text">Гора Эльбрус</p>
+              <img class="elements__image_like" src="./images/like.svg" alt="Нравится">
+            </div>
+            <div class="elements__rectangle">
+              <img class="elements__image" src="./images/dombay.png" alt="Домбай">
+              <p class="elements__text">Домбай</p>
+              <img class="elements__image_like" src="./images/like.svg" alt="Нравится">
+            </div>
+            <div class="elements__rectangle">
+              <img class="elements__image" src="./images/elbrus.png" alt="Эльбрус">
+              <p class="elements__text">Гора Эльбрус</p>
+              <img class="elements__image_like" src="./images/like.svg" alt="Нравится">
+            </div>
+            <div class="elements__rectangle">
+              <img class="elements__image" src="./images/dombay.png" alt="Домбай">
+              <p class="elements__text">Домбай</p>
+              <img class="elements__image_like" src="./images/like.svg" alt="Нравится">
+            </div>
+            <div class="elements__rectangle">
+              <img class="elements__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
+              <p class="elements__text">Карачаево-Черкесия</p>
+              <img class="elements__image_like" src="./images/like.svg" alt="Нравится">
+            </div>
       </section>
     </main>
-    <footer>
-      <nav class="footer">
-        <a class="footer__link" href="https://yandex.ru/maps" target="_blank">Карты</a>
-        <a class="footer__link" href="https://yandex.ru/pogoda" target="_blank">Погода</a>
-        <a class="footer__link" href="https://rasp.yandex.ru" target="_blank">Расписание</a>
-        <a class="footer__link" href="https://calendar.yandex.ru" target="_blank">Календарь</a>
-        <a class="footer__link" href="https://travel.yandex.ru" target="_blank">Путешествия</a>
-        <p class="footer__copyright">&copy; 2022. Андрей Кизилов</p>
-      </nav>
+    <footer class="footer">
+        <p>&copy; 2022 Mesto Russia</p>
     </footer>
   </body>
 </html>
