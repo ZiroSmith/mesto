@@ -1,26 +1,25 @@
-.profile__button_edit {
-  background-image: url(../../../images/slesh.png);
+.profile__add-button {
+  background-image: url(../../../images/plus.png);
   background-position: 50% 50%;
   background-repeat: no-repeat;
-  margin: 0;
-  padding: 0;
-  margin-left: 2px;
-  margin-top: 6px;
   align-self: center;
-  width: 22px;
-  height: 22px;
+  min-height: 50px;
+  width: 148px;
+  margin-left: auto;
   border: 1px solid #fff;
   background-color: transparent;
   cursor: pointer;
 }
 
 @media screen and (max-width: 1023px) {
-  .profile__button_edit  {
-    width: 20px;
+  .profile__add-button {
+    margin: 0;
+    margin-top: 10px;
+    width: 282px;
   }
 }
 
-.profile__button_edit:hover {
+.profile__add-button:hover {
   opacity: 0.6;
   transition: 0.3s;
 }

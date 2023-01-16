@@ -1,4 +1,4 @@
-.popup__card {
+.input {
   border-radius: 5%;
   align-self: end;
   height: 330px;
@@ -7,7 +7,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .popup__card {
+  .input {
     width: 282px;
     height: 322px;
   }

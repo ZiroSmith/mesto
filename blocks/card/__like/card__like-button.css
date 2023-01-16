@@ -1,5 +1,5 @@
-.elements__button_like {
-  background-image: url(../images/like.svg);
+.card__like-button {
+  background-image: url(../../../images/like.svg);
   width: 22px;
   min-height: 19px;
   margin: 0;
@@ -10,12 +10,12 @@
   cursor: pointer;
 }
 
-.elements__button_like:hover {
+.card__like-button:hover {
   opacity: 0.6;
   transition: 0.3s;
 }
 
-.elements__button_like::before {
+.card__like-button::before {
   background-image: url(../images/like_dark.png);
   transition: 0.3s;
 }
