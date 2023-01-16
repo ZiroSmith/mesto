@@ -10,17 +10,6 @@
     <title>Место</title>
   </head>
   <body class="page">
-    <div class="popup">
-      <div class="popup__container">
-        <button class="popup__button_close"></button>
-        <div class="popup__card">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="input__text popup__form_name" type="text" placeholder="Имя"></input>
-          <input class="input__text popup__form_profession" type="text" placeholder="Профессия"></input>
-          <button class="popup__button_save">Сохранить</button>
-        </div>
-      </div>
-    </div>
     <header class="header">
       <img class="header__logo" src="./images/logo.png" alt="Логотип">
     </header>
@@ -29,14 +18,10 @@
           <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар">
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__button_edit">
-              <img class="profile__button_edit-image" src="./images/slesh.png" alt="Редактировать">
-            </button>
+            <button class="profile__button_edit"></button>
             <p class="profile__profession">Исследователь океана</p>
           </div>
-        <button class="profile__button_add">
-          <img class="profile__button_add-image" src="./images/plus.png" alt="Добавить">
-        </button>
+        <button class="profile__button_add"></button>
       </section>
       <section class="elements">
             <div class="elements__card">
@@ -86,6 +71,18 @@
     <footer class="footer">
         <p>&copy; 2022 Mesto Russia</p>
     </footer>
+    <!-- Pop-up Редактирования-->
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__button_close"></button>
+        <div class="popup__card">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input class="input__text popup__form_name" type="text" placeholder="Имя"></input>
+          <input class="input__text popup__form_profession" type="text" placeholder="Профессия"></input>
+          <button class="popup__button_save">Сохранить</button>
+        </div>
+      </div>
+    </div>
     <script></script>
   </body>
 </html>
