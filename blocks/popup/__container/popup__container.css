@@ -1,0 +1,16 @@
+.popup__container {
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  position: fixed;
+  width: 470px;
+  min-height: 370px;
+	z-index: 2;
+	opacity: 1;	
+}
+
+@media screen and (max-width: 767px) {
+  .popup__container {
+    width: 282px;
+    min-height: 358px;
+  }
+}

@@ -1,0 +1,6 @@
+.input__text {
+  border: none;
+  padding-bottom: 9px;
+  border-bottom: 1px solid #f1f1f1;
+  box-sizing: border-box;
+}

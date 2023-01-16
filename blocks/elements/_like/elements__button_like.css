@@ -1,0 +1,21 @@
+.elements__button_like {
+  background-image: url(../images/like.svg);
+  width: 22px;
+  min-height: 19px;
+  margin: 0;
+  margin-right: 5px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.elements__button_like:hover {
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+.elements__button_like::before {
+  background-image: url(../images/like_dark.png);
+  transition: 0.3s;
+}

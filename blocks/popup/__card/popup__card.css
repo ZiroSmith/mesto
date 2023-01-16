@@ -1,0 +1,14 @@
+.popup__card {
+  border-radius: 5%;
+  align-self: end;
+  height: 330px;
+  width: 430px;
+  background: #fff;
+}
+
+@media screen and (max-width: 767px) {
+  .popup__card {
+    width: 282px;
+    height: 322px;
+  }
+}
