@@ -1,4 +1,4 @@
-.input__save-button {
+.form__save-button {
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -17,7 +17,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .input__save-button {
+  .form__save-button {
     width: 238px;
     margin: 40px 22px 25px;
     font-size: 14px;
@@ -25,7 +25,7 @@
   }
 }
 
-.input__save-button:hover {
+.form__save-button:hover {
   opacity: 0.8;
   transition: 0.3s;
 }

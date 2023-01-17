@@ -1,7 +1,6 @@
 .popup__container {
   display: grid;
   grid-template-rows: repeat(2, auto);
-  position: fixed;
   width: 470px;
   min-height: 370px;
 	z-index: 2;

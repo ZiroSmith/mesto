@@ -1,6 +1,5 @@
-.input__title {
+.form__title {
   margin: 34px 64px 0 36px;
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
@@ -8,7 +7,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .input__title {
+  .form__title {
     width: 238px;
     font-size: 18px;
     line-height: 22px;

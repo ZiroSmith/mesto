@@ -16,6 +16,6 @@
 }
 
 .card__like-button::before {
-  background-image: url(../images/like_dark.png);
+  background-image: url(../../../images/like-dark.svg);
   transition: 0.3s;
 }

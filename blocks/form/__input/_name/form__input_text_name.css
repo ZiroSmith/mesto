@@ -1,12 +1,12 @@
 .input__name {
   width: 358px;
-  margin: 48px 36px 0 36px;
   padding: 0;
+  padding-top: 18px;
 }
 
 @media screen and (max-width: 767px) {
   .input__name {
     width: 238px;
-    margin: 75px 22px 0;
+    padding-top: 45px;
   }
 }
