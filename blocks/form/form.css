@@ -1,14 +1,16 @@
 .form {
-  border-radius: 5%;
-  align-self: end;
-  height: 330px;
+  position: relative;
+  border-radius: 10px;
+  min-height: 330px;
   width: 430px;
   background: #fff;
+  margin: 18px 0 28px 20px;
 }
 
 @media screen and (max-width: 767px) {
   .form {
     width: 282px;
-    height: 322px;
+    min-height: 322px;
+    margin: 60px 0 0;
   }
 }
