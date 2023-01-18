@@ -13,7 +13,6 @@
 
 @media screen and (max-width: 767px) {
   .form__input {
-    margin: 30px 22px 0;
     max-width: 238px;
     margin: 32px 22px 0;
     padding: 0 0 8px;
