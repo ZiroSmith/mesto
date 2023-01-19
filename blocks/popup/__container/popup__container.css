@@ -1,6 +1,7 @@
 .popup__container {
   position: relative;
-  width: 470px;
+  width: 430px;
+  margin: 0;
   z-index: 2;
   opacity: 1;
 }
@@ -8,6 +9,6 @@
 @media screen and (max-width: 767px) {
   .popup__container {
     width: 282px;
-    margin: 0;
+    margin-top: 70px;
   }
 }

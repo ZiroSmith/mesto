@@ -4,8 +4,8 @@
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
-  top: -22px;
-  right: -20px;
+  top: -40px;
+  right: -40px;
   margin: 0;
   padding: 0;
   border: none;
@@ -20,7 +20,7 @@
   .popup__close-button {
     width: 20px;
     height: 20px;
-    top: 23px;
+    top: -36px;
     right: 0;
   }
 }
