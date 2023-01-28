@@ -1,14 +1,26 @@
 let popupEditElement = document.querySelector('.popup_item');
 let popupAddElement = document.querySelector('.popup_add');
 // let popupExpandElement = document.querySelector('.xxxxx');
+let ClosePopupEdit = document.querySelector('.popup__close-button_edit');
+let ClosePopupAdd = document.querySelector('.popup__close-button_add');
+// let ClosePopupExpand = document.querySelector('.popup__close-button_expand');
 let formElement = document.querySelector('.form');
 let popupButtonOpen = document.querySelector('.profile__edit-button');
-let popupButtonClose = document.querySelector('.popup__close-button');
+
 let nameInput = document.querySelector('.form__input_type_name');
 let jobInput = document.querySelector('.form__input_type_profession');
 let profileName = document.querySelector('.profile__name');
 let profileProfession = document.querySelector('.profile__profession');
 
+
+let popupElement = document.querySelector('.popup');
+
+function closePopup (){
+  popupElement.classList.remove('popup_opened');
+}
+ClosePopupEdit.addEventListener('click', closePopup);
+ClosePopupAdd.addEventListener('click', closePopup);
+// ClosePopupExpand.addEventListener('click', closePopup);
 
 //Открытие popup
 let openPopup = function(){
@@ -19,10 +31,10 @@ let openPopup = function(){
 popupButtonOpen.addEventListener('click', openPopup);
 
 //Закрытие popup
-let closePopup = function(){
-  popupEditElement.classList.remove('popup_opened');
-}
-popupButtonClose.addEventListener('click', closePopup);
+// let closePopup = function(){
+//   popupEditElement.classList.remove('popup_opened');
+// }
+// popupButtonClose.addEventListener('click', closePopup);
 
 
 // Обработчик «отправки» формы
