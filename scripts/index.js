@@ -1,28 +1,17 @@
+let popupElement = document.querySelector('.popup');
 let popupEditElement = document.querySelector('.popup_item');
 let popupAddElement = document.querySelector('.popup_add');
 // let popupExpandElement = document.querySelector('.xxxxx');
-let ClosePopupEdit = document.querySelector('.popup__close-button_edit');
-let ClosePopupAdd = document.querySelector('.popup__close-button_add');
-// let ClosePopupExpand = document.querySelector('.popup__close-button_expand');
+let ClosePopupButton = document.querySelectorAll('.popup__close-button');
 let formElement = document.querySelector('.form');
 let popupButtonOpen = document.querySelector('.profile__edit-button');
-
 let nameInput = document.querySelector('.form__input_type_name');
 let jobInput = document.querySelector('.form__input_type_profession');
 let profileName = document.querySelector('.profile__name');
 let profileProfession = document.querySelector('.profile__profession');
 
 
-let popupElement = document.querySelector('.popup');
-
-function closePopup (){
-  popupElement.classList.remove('popup_opened');
-}
-ClosePopupEdit.addEventListener('click', closePopup);
-ClosePopupAdd.addEventListener('click', closePopup);
-// ClosePopupExpand.addEventListener('click', closePopup);
-
-//Открытие popup
+//Открытие popup РЕДАКТИРОВАНИЯ ПРОФИЛЯ
 let openPopup = function(){
   popupEditElement.classList.add('popup_opened');
   nameInput.value = profileName.textContent;
@@ -30,11 +19,27 @@ let openPopup = function(){
 }
 popupButtonOpen.addEventListener('click', openPopup);
 
+
+//Открытие popup ДОБАВЛЕНИЯ КАРТОЧКИ
+let popupButtonAdd = document.querySelector('.profile__add-button');
+let popupButtonCloseCLONE = document.querySelector('.popup__close-button-MODIFICATOR');
+
+let openPopupClone = function(){
+  popupAddElement.classList.add('popup_opened');
+}
+popupButtonAdd.addEventListener('click', openPopupClone);
+
+
 //Закрытие popup
-// let closePopup = function(){
-//   popupEditElement.classList.remove('popup_opened');
-// }
-// popupButtonClose.addEventListener('click', closePopup);
+const closePopup = function(popupElement) {
+  popupElement.classList.remove('popup_opened');
+}
+
+ClosePopupButton.forEach((CloseButton) => {
+  CloseButton.addEventListener('click', function (evt) {
+    closePopup(evt.target.closest('.popup'))
+  });
+});
 
 
 // Обработчик «отправки» формы
@@ -42,23 +47,12 @@ function handleFormSubmit (evt) {
   evt.preventDefault(); 
   profileName.textContent = nameInput.value;
   profileProfession.textContent = jobInput.value;
-  closePopup();
+  closePopup(popupElement);
 }
+
 
 // Прикрепляем обработчик к форме:
 formElement.addEventListener('submit', handleFormSubmit);
-
-//------------------СКРИПТ POPUP ДОБАВЛЕНИЯ КАРТОЧКИ---------------------------
-
-let popupButtonAdd = document.querySelector('.profile__add-button');
-let popupButtonCloseCLONE = document.querySelector('.popup__close-button-MODIFICATOR');
-
-
-//Открытие POPUP ДОБАВЛЕНИЯ КАРТОЧКИ
-let openPopupClone = function(){
-  popupAddElement.classList.add('popup_opened');
-}
-popupButtonAdd.addEventListener('click', openPopupClone);
 
 //--------------------СКРИПТЫ ОТРИСОВКИ КАРТОЧЕК-------------------------------
 
@@ -98,20 +92,18 @@ const initialCards = [
 
 const template = document.querySelector('#card-template').content.querySelector('.card');
 const elements = document.querySelector('.elements');
-//переменные для добавления новой карточки юзером
-// const submitButton = document.querySelector('.todolist-form_submit');
-// const input = document.querySelector('.todolist-form_input');
+const submitButton = document.querySelector('.form__save-button_create');
+const inputTitle = document.querySelector('.form__input_type_title');
+const inputLink = document.querySelector('.form__input_type_link');
 
 //Добавление карточки юзером
-// submitButton.addEventListener('click', (e) => {
-//   e.preventDefault();
+submitButton.addEventListener('click', (e) => {
+  e.preventDefault();
 
-//   const card = createCard({ title: input.value });
+  const card = createCard({ name: input.value });
 
-//   elements.append(card);
-// });
-
-
+  elements.append(card);
+});
 
 renderCards(initialCards);
 
