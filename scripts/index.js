@@ -36,7 +36,7 @@ const initialCards = [
 let popupElement = document.querySelector('.popup');
 let popupEditElement = document.querySelector('.popup_item');
 let popupAddElement = document.querySelector('.popup_add');
-// let popupExpandElement = document.querySelector('.xxxxx');
+let popupExpandElement = document.querySelector('.popup_expand');
 let ClosePopupButton = document.querySelectorAll('.popup__close-button');
 let formElement = document.querySelector('.form');
 let popupButtonOpen = document.querySelector('.profile__edit-button');
@@ -52,23 +52,22 @@ const inputTitle = document.querySelector('.form__input_type_title');
 const inputLink = document.querySelector('.form__input_type_link');
 
 let popupButtonAdd = document.querySelector('.profile__add-button');
-let popupButtonCloseCLONE = document.querySelector('.popup__close-button-MODIFICATOR');
 
 
 //Открытие popup РЕДАКТИРОВАНИЯ ПРОФИЛЯ
-let openPopup = function(){
+let openPopupEdit = function(){
   popupEditElement.classList.add('popup_opened');
   nameInput.value = profileName.textContent;
   jobInput.value = profileProfession.textContent;
 }
-popupButtonOpen.addEventListener('click', openPopup);
+popupButtonOpen.addEventListener('click', openPopupEdit);
 
 
 //Открытие popup ДОБАВЛЕНИЯ КАРТОЧКИ
-let openPopupClone = function(){
+let openPopupAdd = function(){
   popupAddElement.classList.add('popup_opened');
 }
-popupButtonAdd.addEventListener('click', openPopupClone);
+popupButtonAdd.addEventListener('click', openPopupAdd);
 
 
 //Закрытие popup
@@ -134,10 +133,17 @@ function createCard(item) {
 
   card.querySelector('.card__like-button').addEventListener('click', function (evt) {
     evt.target.classList.toggle('card__like-button_active');
- });
+  });
 
-  // card.querySelector('.todolist-item__del').addEventListener('click', () => {
-  //   card.remove();
-  // });
+  card.querySelector('.card__del-button').addEventListener('click', () => {
+    card.remove();
+  });
+
+  //Открытие popup УВЕЛИЧЕНИЯ КАРТИНКИ
+  card.querySelector('.card__image').addEventListener('click', function(){
+    popupExpandElement.classList.add('popup_opened');
+  });
+
   return card;
-  }
+}
+
