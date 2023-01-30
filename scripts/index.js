@@ -1,61 +1,3 @@
-let popupElement = document.querySelector('.popup');
-let popupEditElement = document.querySelector('.popup_item');
-let popupAddElement = document.querySelector('.popup_add');
-// let popupExpandElement = document.querySelector('.xxxxx');
-let ClosePopupButton = document.querySelectorAll('.popup__close-button');
-let formElement = document.querySelector('.form');
-let popupButtonOpen = document.querySelector('.profile__edit-button');
-let nameInput = document.querySelector('.form__input_type_name');
-let jobInput = document.querySelector('.form__input_type_profession');
-let profileName = document.querySelector('.profile__name');
-let profileProfession = document.querySelector('.profile__profession');
-
-
-//Открытие popup РЕДАКТИРОВАНИЯ ПРОФИЛЯ
-let openPopup = function(){
-  popupEditElement.classList.add('popup_opened');
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileProfession.textContent;
-}
-popupButtonOpen.addEventListener('click', openPopup);
-
-
-//Открытие popup ДОБАВЛЕНИЯ КАРТОЧКИ
-let popupButtonAdd = document.querySelector('.profile__add-button');
-let popupButtonCloseCLONE = document.querySelector('.popup__close-button-MODIFICATOR');
-
-let openPopupClone = function(){
-  popupAddElement.classList.add('popup_opened');
-}
-popupButtonAdd.addEventListener('click', openPopupClone);
-
-
-//Закрытие popup
-const closePopup = function(popupElement) {
-  popupElement.classList.remove('popup_opened');
-}
-
-ClosePopupButton.forEach((CloseButton) => {
-  CloseButton.addEventListener('click', function (evt) {
-    closePopup(evt.target.closest('.popup'))
-  });
-});
-
-
-// Обработчик «отправки» формы
-function handleFormSubmit (evt) {
-  evt.preventDefault(); 
-  profileName.textContent = nameInput.value;
-  profileProfession.textContent = jobInput.value;
-  closePopup(popupElement);
-}
-
-
-// Прикрепляем обработчик к форме:
-formElement.addEventListener('submit', handleFormSubmit);
-
-//--------------------СКРИПТЫ ОТРИСОВКИ КАРТОЧЕК-------------------------------
-
 //Массив стоковых карточек
 const initialCards = [
   {
@@ -90,34 +32,86 @@ const initialCards = [
   }
 ]; 
 
+
+let popupElement = document.querySelector('.popup');
+let popupEditElement = document.querySelector('.popup_item');
+let popupAddElement = document.querySelector('.popup_add');
+// let popupExpandElement = document.querySelector('.xxxxx');
+let ClosePopupButton = document.querySelectorAll('.popup__close-button');
+let formElement = document.querySelector('.form');
+let popupButtonOpen = document.querySelector('.profile__edit-button');
+let nameInput = document.querySelector('.form__input_type_name');
+let jobInput = document.querySelector('.form__input_type_profession');
+let profileName = document.querySelector('.profile__name');
+let profileProfession = document.querySelector('.profile__profession');
+
 const template = document.querySelector('#card-template').content.querySelector('.card');
 const elements = document.querySelector('.elements');
-const submitButton = document.querySelector('.form__save-button_create');
+let formElementAdd = document.querySelector('.form_add');
 const inputTitle = document.querySelector('.form__input_type_title');
 const inputLink = document.querySelector('.form__input_type_link');
 
-//Добавление карточки юзером
-submitButton.addEventListener('click', (e) => {
-  e.preventDefault();
+let popupButtonAdd = document.querySelector('.profile__add-button');
+let popupButtonCloseCLONE = document.querySelector('.popup__close-button-MODIFICATOR');
 
-  const card = createCard({ name: input.value });
 
-  elements.append(card);
+//Открытие popup РЕДАКТИРОВАНИЯ ПРОФИЛЯ
+let openPopup = function(){
+  popupEditElement.classList.add('popup_opened');
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileProfession.textContent;
+}
+popupButtonOpen.addEventListener('click', openPopup);
+
+
+//Открытие popup ДОБАВЛЕНИЯ КАРТОЧКИ
+let openPopupClone = function(){
+  popupAddElement.classList.add('popup_opened');
+}
+popupButtonAdd.addEventListener('click', openPopupClone);
+
+
+//Закрытие popup
+const closePopup = function(popupElement) {
+  popupElement.classList.remove('popup_opened');
+}
+
+ClosePopupButton.forEach((CloseButton) => {
+  CloseButton.addEventListener('click', function (evt) {
+    closePopup(evt.target.closest('.popup'))
+  });
 });
 
-renderCards(initialCards);
 
-//Взаимодействие юзера с карточкой
-function createCard(item) {
-const card = template.cloneNode(true);
-card.querySelector('.card__text').textContent = item.name;
-card.querySelector('.card__image').src = item.link;
-card.querySelector('.card__image').alt = item.alt;
-// card.querySelector('.todolist-item__del').addEventListener('click', () => {
-//   card.remove();
-// });
-return card;
+// Обработчик «отправки» формы профиля
+function handleFormSubmit (evt) {
+  evt.preventDefault(); 
+  profileName.textContent = nameInput.value;
+  profileProfession.textContent = jobInput.value;
+  closePopup(popupElement);
 }
+
+// Обработчик сохранения изменений профиля:
+formElement.addEventListener('submit', handleFormSubmit);
+
+
+//Добавление карточки юзером
+function handleAddCard (evt) {
+  evt.preventDefault(); 
+
+  const title = inputTitle.value;
+  const alt = inputTitle.value;
+  const link = inputLink.value;
+
+  const cardNew = createCard({ name: title, link: link, alt: alt });
+
+  elements.append(cardNew);
+  evt.target.reset();
+  closePopup(popupAddElement);
+};
+
+formElementAdd.addEventListener('submit', handleAddCard);
+
 
 //Отрисовка карточек при загрузке страницы
 function renderCards(initialCards) {
@@ -127,3 +121,23 @@ function renderCards(initialCards) {
 
   elements.append(...cards);
 }
+
+renderCards(initialCards);
+
+
+//Взаимодействие юзера с карточкой
+function createCard(item) {
+  const card = template.cloneNode(true);
+  card.querySelector('.card__text').textContent = item.name;
+  card.querySelector('.card__image').src = item.link;
+  card.querySelector('.card__image').alt = item.alt;
+
+  card.querySelector('.card__like-button').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('card__like-button_active');
+ });
+
+  // card.querySelector('.todolist-item__del').addEventListener('click', () => {
+  //   card.remove();
+  // });
+  return card;
+  }

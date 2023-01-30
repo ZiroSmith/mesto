@@ -13,8 +13,3 @@
   opacity: 0.5;
   transition: 0.3s;
 }
-
-.card__like-button::before {
-  background-image: url(../../../images/like-dark.svg);
-  transition: 0.3s;
-}
