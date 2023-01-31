@@ -54,22 +54,25 @@
     </div>
     <!-- Pop-up Раскрытия картинки-->
     <div class="popup popup_expand">
-      <div class="popup__container">
-        <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
-        <img class="card__image" src="" alt="">
-        <h2 class="card__text"></h2>
+      <div class="popup__container popup__container_expand">
+        <div class="popup__container_type_info">
+          <button class="popup__close-button popup__close-button_type_expand" type="button" aria-label="Закрыть"></button>
+          <img class="card__image_type_expand" src="#" alt="">
+          <h2 class="card__text_type_expand"></h2>
+        </div>
       </div>
     </div>
     <template id="card-template">
       <article class="card">
         <button class="card__del-button" type="button" aria-label="Удалить"></button>
-        <img class="card__image" src="" alt="">
+        <img class="card__image" src="#" alt="">
         <div class="card__info">
           <h2 class="card__text"></h2>
           <button class="card__like-button" type="button" aria-label="Нравится"></button>
         </div>
       </article>
     </template>
+    <script src="./scripts/constans.js"></script>
     <script src="./scripts/index.js"></script>
   </body>
 </html>

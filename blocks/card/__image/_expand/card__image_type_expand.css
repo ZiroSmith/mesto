@@ -1,0 +1,6 @@
+.card__image_type_expand {
+  width: auto;
+  height: auto;
+  max-width: 75vw;
+  max-height: 75vh;
+}
