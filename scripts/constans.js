@@ -49,5 +49,5 @@ const formElementAdd = document.querySelector('.form_add');
 const inputTitle = document.querySelector('.form__input_type_title');
 const inputLink = document.querySelector('.form__input_type_link');
 const popupButtonAdd = document.querySelector('.profile__add-button');
-const cardTextExpand = document.querySelector('.card__text-expand');
-const cardImageExpand = document.querySelector('.card__image-expand');
+const cardTextExpand = document.querySelector('.popup__text-expand');
+const cardImageExpand = document.querySelector('.popup__image-expand');
