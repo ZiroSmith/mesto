@@ -1,24 +1,3 @@
-const popupElement = document.querySelector('.popup');
-const popupEditElement = document.querySelector('.popup_item');
-const popupAddElement = document.querySelector('.popup_add');
-const popupExpandElement = document.querySelector('.popup_expand');
-const ClosePopupButton = document.querySelectorAll('.popup__close-button');
-const formElement = document.querySelector('.form');
-const popupButtonOpen = document.querySelector('.profile__edit-button');
-const nameInput = document.querySelector('.form__input_type_name');
-const jobInput = document.querySelector('.form__input_type_profession');
-const profileName = document.querySelector('.profile__name');
-const profileProfession = document.querySelector('.profile__profession');
-const template = document.querySelector('#card-template').content.querySelector('.card');
-const elements = document.querySelector('.elements');
-const formElementAdd = document.querySelector('.form_add');
-const inputTitle = document.querySelector('.form__input_type_title');
-const inputLink = document.querySelector('.form__input_type_link');
-const popupButtonAdd = document.querySelector('.profile__add-button');
-const cardTextExpand = document.querySelector('.card__text_type_expand');
-const cardImageExpand = document.querySelector('.card__image_type_expand');
-
-
 //Открытие popup РЕДАКТИРОВАНИЯ ПРОФИЛЯ
 const openPopupEdit = function(){
   popupEditElement.classList.add('popup_opened');
@@ -40,7 +19,7 @@ const closePopup = function(popupElement) {
   popupElement.classList.remove('popup_opened');
 }
 
-ClosePopupButton.forEach((CloseButton) => {
+buttonclosePopup.forEach((CloseButton) => {
   CloseButton.addEventListener('click', function (evt) {
     closePopup(evt.target.closest('.popup'))
   });
@@ -110,14 +89,14 @@ function createCard(item) {
   });
 
   //Открытие popup УВЕЛИЧЕНИЯ КАРТИНКИ
-  function cardClick() {
+  function clickCard() {
     popupExpandElement.classList.add('popup_opened');
     cardTextExpand.textContent = item.name;
     cardImageExpand.src = item.link;
     cardImageExpand.alt =item.name;
   }
 
-  cardImage.addEventListener('click', cardClick);
+  cardImage.addEventListener('click', clickCard);
 
   return card;
 }

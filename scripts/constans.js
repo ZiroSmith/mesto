@@ -32,3 +32,22 @@ const initialCards = [
   }
 ]; 
 
+const popupElement = document.querySelector('.popup');
+const popupEditElement = document.querySelector('.popup_type_item');
+const popupAddElement = document.querySelector('.popup_type_add');
+const popupExpandElement = document.querySelector('.popup_type_expand');
+const buttonclosePopup = document.querySelectorAll('.popup__close-button');
+const formElement = document.querySelector('.form');
+const popupButtonOpen = document.querySelector('.profile__edit-button');
+const nameInput = document.querySelector('.form__input_type_name');
+const jobInput = document.querySelector('.form__input_type_profession');
+const profileName = document.querySelector('.profile__name');
+const profileProfession = document.querySelector('.profile__profession');
+const template = document.querySelector('#card-template').content.querySelector('.card');
+const elements = document.querySelector('.elements');
+const formElementAdd = document.querySelector('.form_add');
+const inputTitle = document.querySelector('.form__input_type_title');
+const inputLink = document.querySelector('.form__input_type_link');
+const popupButtonAdd = document.querySelector('.profile__add-button');
+const cardTextExpand = document.querySelector('.card__text_type_expand');
+const cardImageExpand = document.querySelector('.card__image_type_expand');
