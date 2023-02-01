@@ -32,12 +32,11 @@ const initialCards = [
   }
 ]; 
 
-const popupElement = document.querySelector('.popup');
 const popupEditElement = document.querySelector('.popup_type_item');
 const popupAddElement = document.querySelector('.popup_type_add');
 const popupExpandElement = document.querySelector('.popup_type_expand');
 const buttonclosePopup = document.querySelectorAll('.popup__close-button');
-const formElement = document.querySelector('.form');
+const formProfileElement = document.querySelector('.form_edit');
 const popupButtonOpen = document.querySelector('.profile__edit-button');
 const nameInput = document.querySelector('.form__input_type_name');
 const jobInput = document.querySelector('.form__input_type_profession');

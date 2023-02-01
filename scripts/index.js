@@ -1,6 +1,13 @@
+
+// Универсальная функция открытия popup
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+} 
+
+
 //Открытие popup РЕДАКТИРОВАНИЯ ПРОФИЛЯ
 const openPopupEdit = function(){
-  popupEditElement.classList.add('popup_opened');
+  openPopup(popupEditElement);
   nameInput.value = profileName.textContent;
   jobInput.value = profileProfession.textContent;
 }
@@ -8,10 +15,7 @@ popupButtonOpen.addEventListener('click', openPopupEdit);
 
 
 //Открытие popup ДОБАВЛЕНИЯ КАРТОЧКИ
-const openPopupAdd = function(){
-  popupAddElement.classList.add('popup_opened');
-}
-popupButtonAdd.addEventListener('click', openPopupAdd);
+popupButtonAdd.addEventListener('click', () => openPopup(popupAddElement));
 
 
 //Закрытие popup
@@ -35,7 +39,7 @@ function handleFormSubmit (evt) {
 }
 
 // Обработчик сохранения изменений профиля:
-formElement.addEventListener('submit', handleFormSubmit);
+formProfileElement.addEventListener('submit', handleFormSubmit);
 
 
 //Добавление карточки юзером
@@ -48,7 +52,7 @@ function handleAddCard (evt) {
 
   const cardNew = createCard({ name: title, link: link, alt: alt });
 
-  elements.append(cardNew);
+  elements.prepend(cardNew);
   evt.target.reset();
   closePopup(popupAddElement);
 };
@@ -90,7 +94,7 @@ function createCard(item) {
 
   //Открытие popup УВЕЛИЧЕНИЯ КАРТИНКИ
   function clickCard() {
-    popupExpandElement.classList.add('popup_opened');
+    openPopup(popupExpandElement);
     cardTextExpand.textContent = item.name;
     cardImageExpand.src = item.link;
     cardImageExpand.alt =item.name;
