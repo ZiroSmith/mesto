@@ -32,6 +32,7 @@ const initialCards = [
   }
 ]; 
 
+const popups = document.querySelectorAll('.popup');
 const popupEditElement = document.querySelector('.popup_type_item');
 const popupAddElement = document.querySelector('.popup_type_add');
 const popupExpandElement = document.querySelector('.popup_type_expand');

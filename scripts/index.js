@@ -2,6 +2,7 @@
 // Универсальная функция открытия popup
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEsc);
 } 
 
 
@@ -23,19 +24,36 @@ const closePopup = function(popupElement) {
   popupElement.classList.remove('popup_opened');
 }
 
+//Закрытие popup - Клик по крестику
 buttonclosePopup.forEach((CloseButton) => {
   CloseButton.addEventListener('click', function (evt) {
     closePopup(evt.target.closest('.popup'))
   });
 });
 
+//Закрытие popup - по кнопке Esc
+function closePopupEsc(evt) {
+  if (evt.key === "Escape") {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+}
+
+
+// Функция для закрытия всех попапов по оверлею
+popups.forEach((popup) => {
+	popup.addEventListener('click', (evt) => {
+		if (evt.target.classList.contains('popup')) {
+			closePopup(popup);
+		}
+	});
+});
 
 // Обработчик «отправки» формы профиля
 function handleFormSubmit (evt) {
   evt.preventDefault(); 
   profileName.textContent = nameInput.value;
   profileProfession.textContent = jobInput.value;
-  closePopup(popupElement);
+  closePopup(popupEditElement);
 }
 
 // Обработчик сохранения изменений профиля:
@@ -72,7 +90,7 @@ function renderCards(initialCards) {
 renderCards(initialCards);
 
 
-//Взаимодействие юзера с карточкой
+//Взаимодействие пользователя с карточкой
 function createCard(item) {
   const card = template.cloneNode(true);
   const cardText = card.querySelector('.card__text');
