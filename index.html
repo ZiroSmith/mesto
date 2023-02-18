@@ -34,10 +34,11 @@
         <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
         <form class="form form_edit" name="profile-info" novalidate>
           <h2 class="form__title">Редактировать профиль</h2>
-          <input id="email-input" class="form__input form__input_type_name" name="name" type="text" placeholder="Имя" required>
-          <span class="email-input-error form__input-error"></span> 
-          <input class="form__input form__input_type_profession" name="profession" type="text" placeholder="Профессия" required>
-          <button class="form__save-button" type="submit">Сохранить</button>
+          <input id="name-input" class="form__input form__input_type_name" name="name" type="text" placeholder="Имя" required minlength="2" maxlength="40">
+          <span class="name-input-error form__input-error"></span> 
+          <input id="profession-input" class="form__input form__input_type_profession" name="profession" type="text" placeholder="Профессия" required minlength="2" maxlength="200">
+          <span class="profession-input-error form__input-error"></span>
+          <button class="form__save-button form__submit" type="submit">Сохранить</button>
         </form>
       </div>
     </div>
@@ -47,9 +48,11 @@
         <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
         <form class="form form_add" name="add-card" novalidate>
           <h2 class="form__title">Новое место</h2>
-          <input class="form__input form__input_type_title" name="name" type="text" placeholder="Название" required>
-          <input class="form__input form__input_type_link" name="profession" type="text" placeholder="Ссылка на картинку" required>
-          <button class="form__save-button form__save-button_create" type="submit">Создать</button>
+          <input id="place-input" class="form__input form__input_type_title" name="name" type="text" placeholder="Название" required minlength="2" maxlength="30">
+          <span class="place-input-error form__input-error"></span>
+          <input id="url-input" class="form__input form__input_type_link" name="profession" placeholder="Ссылка на картинку" required type="url">
+          <span class="url-input-error form__input-error"></span>
+          <button class="form__save-button form__save-button_create form__submit" type="submit">Создать</button>
         </form>
       </div>
     </div>

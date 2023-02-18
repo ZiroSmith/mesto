@@ -30,3 +30,12 @@
 .form__save-button:hover {
   background: rgba(0,0,0, 0.8);
 }
+
+.button_inactive {
+  color: #000;
+  background: #FFF;
+  border: #000 1px solid;
+  opacity: 0.2;
+  pointer-events: none;
+  user-select: none;
+}

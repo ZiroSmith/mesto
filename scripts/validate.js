@@ -1,35 +1,80 @@
+const objectForValidation = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__submit',
+  inactiveButtonClass: 'button_inactive',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_active'
+}; 
 
-// Вынесем все необходимые элементы формы в константы
-const formElement = document.querySelector('.form');
-const formInput = formElement.querySelector('.form__input');
 
-// Выбираем элемент ошибки на основе уникального класса 
-const formError = formElement.querySelector(`.${formInput.id}-error`);
-
-// Функция, которая добавляет класс с ошибкой
-const showInputError = (element) => {
-  element.classList.add('form__input_type_error');
-  // Показываем сообщение об ошибке
-  formError.classList.add('form__input-error_active');
+// Валидация не пройдена
+const showInputError = (formElement, inputElement, errorMessage, objectForValidation) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add(objectForValidation.inputErrorClass);
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add(objectForValidation.errorClass);
 };
 
-// Функция, которая удаляет класс с ошибкой
-const hideInputError = (element) => {
-  element.classList.remove('form__input_type_error');
-  // Скрываем сообщение об ошибке
-  formError.classList.remove('form__input-error_active');
+// Валидация пройдена
+const hideInputError = (formElement, inputElement, objectForValidation) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove(objectForValidation.inputErrorClass);
+  errorElement.classList.remove(objectForValidation.errorClass);
+  errorElement.textContent = '';
 };
 
-// Функция, которая проверяет валидность поля
-const isValid = () => {
-  if (!formInput.validity.valid) {
-    // Если поле не проходит валидацию, покажем ошибку
-    showInputError(formInput);
+// Проверка валидации
+const checkInputValidity = (formElement, inputElement, objectForValidation) => {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage, objectForValidation);
   } else {
-    // Если проходит, скроем
-    hideInputError(formInput);
+    hideInputError(formElement, inputElement, objectForValidation);
   }
 };
 
-// Вызовем функцию isValid на каждый ввод символа
-formInput.addEventListener('input', isValid); 
+
+const setEventListeners = (formElement, objectForValidation) => {
+  const inputList = Array.from(formElement.querySelectorAll(objectForValidation.inputSelector));
+  const buttonElement = formElement.querySelector(objectForValidation.submitButtonSelector);
+
+   toggleButtonState(inputList, buttonElement, objectForValidation);
+
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', function () {
+      checkInputValidity(formElement, inputElement, objectForValidation);
+
+      toggleButtonState(inputList, buttonElement, objectForValidation);
+    });
+  });
+};
+
+
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  })
+}; 
+
+
+const toggleButtonState = (inputList, buttonElement, objectForValidation) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add(objectForValidation.inactiveButtonClass);
+  } else {
+    buttonElement.classList.remove(objectForValidation.inactiveButtonClass);
+  }
+};
+
+
+function enableValidation(objectForValidation) {
+  const formList = Array.from(document.querySelectorAll(objectForValidation.formSelector));
+  formList.forEach((formElement) => {
+  formElement.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+  });
+
+    setEventListeners(formElement, objectForValidation);
+});
+};
+
+enableValidation(objectForValidation);
