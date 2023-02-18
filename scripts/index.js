@@ -16,17 +16,24 @@ popupButtonOpen.addEventListener('click', openPopupEdit);
 
 
 //Открытие popup ДОБАВЛЕНИЯ КАРТОЧКИ
-popupButtonAdd.addEventListener('click', () => openPopup(popupAddElement));
+const openPopupAdd = function(){
+  openPopup(popupAddElement);
+  inputTitle.value = '';
+  inputLink.value = '';
+}
+popupButtonAdd.addEventListener('click', openPopupAdd);
 
 
 //Закрытие popup
 const closePopup = function(popupElement) {
   popupElement.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupEsc);
+  hideInputError(formElement, inputElement, validationConfig);
 }
 
 //Закрытие popup - Клик по крестику
-buttonclosePopup.forEach((CloseButton) => {
-  CloseButton.addEventListener('click', function (evt) {
+buttonsClosePopup.forEach((ButtonClose) => {
+  ButtonClose.addEventListener('click', function (evt) {
     closePopup(evt.target.closest('.popup'))
   });
 });
@@ -49,7 +56,7 @@ popups.forEach((popup) => {
 });
 
 // Обработчик «отправки» формы профиля
-function handleFormSubmit (evt) {
+function submitEditProfileForm (evt) {
   evt.preventDefault(); 
   profileName.textContent = nameInput.value;
   profileProfession.textContent = jobInput.value;
@@ -57,7 +64,7 @@ function handleFormSubmit (evt) {
 }
 
 // Обработчик сохранения изменений профиля:
-formProfileElement.addEventListener('submit', handleFormSubmit);
+formProfileElement.addEventListener('submit', submitEditProfileForm);
 
 
 //Добавление карточки юзером
