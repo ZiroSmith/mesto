@@ -11,6 +11,7 @@ const openPopupEdit = function(){
   openPopup(popupEditElement);
   nameInput.value = profileName.textContent;
   jobInput.value = profileProfession.textContent;
+  hideInputError(formElement, inputElement, validationConfig);
 }
 popupButtonOpen.addEventListener('click', openPopupEdit);
 
@@ -18,8 +19,8 @@ popupButtonOpen.addEventListener('click', openPopupEdit);
 //Открытие popup ДОБАВЛЕНИЯ КАРТОЧКИ
 const openPopupAdd = function(){
   openPopup(popupAddElement);
-  inputTitle.value = '';
-  inputLink.value = '';
+  formElementAdd.reset();
+  hideInputError(formElement, inputElement, validationConfig);
 }
 popupButtonAdd.addEventListener('click', openPopupAdd);
 
@@ -28,12 +29,11 @@ popupButtonAdd.addEventListener('click', openPopupAdd);
 const closePopup = function(popupElement) {
   popupElement.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupEsc);
-  hideInputError(formElement, inputElement, validationConfig);
 }
 
 //Закрытие popup - Клик по крестику
-buttonsClosePopup.forEach((ButtonClose) => {
-  ButtonClose.addEventListener('click', function (evt) {
+buttonsClosePopup.forEach((buttonClose) => {
+  buttonClose.addEventListener('click', function (evt) {
     closePopup(evt.target.closest('.popup'))
   });
 });
