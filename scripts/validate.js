@@ -8,7 +8,7 @@ const validationConfig = {
 }; 
 
 
-// Валидация не пройдена
+// Валидация не пройдена - отобразить интерфейс ошибки
 const showInputError = (formElement, inputElement, errorMessage, validationConfig) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(validationConfig.inputErrorClass);
@@ -17,7 +17,7 @@ const showInputError = (formElement, inputElement, errorMessage, validationConfi
 };
 
 
-// Валидация пройдена
+// Валидация пройдена - скрыть интерфейс ошибки
 const hideInputError = (formElement, inputElement, validationConfig) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove(validationConfig.inputErrorClass);
@@ -34,19 +34,19 @@ const checkInputValidity = (formElement, inputElement, validationConfig) => {
   }
 };
 
-
+// Создать массив обьектов форм, найти что проверять, проверить валидацию
 const setEventListeners = (formElement, validationConfig) => {
   const inputList = Array.from(formElement.querySelectorAll(validationConfig.inputSelector));
   const buttonElement = formElement.querySelector(validationConfig.submitButtonSelector);
 
-   toggleButtonState(inputList, buttonElement, validationConfig);
-
+  // Дезактивация кнопки пока поля пустые
    formElement.addEventListener('reset', () => {
 		setTimeout(() => {
 			toggleButtonState(inputList, buttonElement, validationConfig)	
 		}, 0);
 	});
 
+  // Применить проверку валидации к полю, где сработало собыие "Ввод"
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
       checkInputValidity(formElement, inputElement, validationConfig);
@@ -56,14 +56,14 @@ const setEventListeners = (formElement, validationConfig) => {
   });
 };
 
-
+// Проверка наличия результата "Невалидно"
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   })
 }; 
 
-
+// Активация\Дезактивация кнопки "Сохранить/Добавить"
 const toggleButtonState = (inputList, buttonElement, validationConfig) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(validationConfig.inactiveButtonClass);
@@ -74,7 +74,7 @@ const toggleButtonState = (inputList, buttonElement, validationConfig) => {
   }
 };
 
-
+// Создать массив объектов из popup-ов, проверить валидацию при отправке формы
 function enableValidation(validationConfig) {
   const formList = Array.from(document.querySelectorAll(validationConfig.formSelector));
   formList.forEach((formElement) => {
