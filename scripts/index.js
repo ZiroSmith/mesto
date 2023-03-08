@@ -1,3 +1,15 @@
+import Card from "./Card.js";
+
+initialCards.forEach((item) => {
+  // Создадим экземпляр карточки
+  const card = new Card(item);
+  // Создаём карточку и возвращаем наружу
+  const cardElement = card.generateCard();
+  // Добавляем в DOM
+  document.querySelector('.elements').append(cardElement);
+});
+
+
 // Универсальная функция открытия popup
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -10,7 +22,6 @@ const openPopupEdit = function(){
   openPopup(popupEditElement);
   nameInput.value = profileName.textContent;
   jobInput.value = profileProfession.textContent;
-  hideInputError(formElement, inputElement, validationConfig);
 }
 popupButtonOpen.addEventListener('click', openPopupEdit);
 
@@ -19,7 +30,6 @@ popupButtonOpen.addEventListener('click', openPopupEdit);
 const openPopupAdd = function(){
   openPopup(popupAddElement);
   formElementAdd.reset();
-  hideInputError(formElement, inputElement, validationConfig);
 }
 popupButtonAdd.addEventListener('click', openPopupAdd);
 
