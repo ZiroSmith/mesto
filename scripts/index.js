@@ -1,8 +1,16 @@
 import Card from "./Card.js";
 
+////Открытие popup УВЕЛИЧЕНИЯ КАРТИНКИ
+const handleExpandCard = (name,link) => {
+  cardTextExpand.textContent = name;
+  cardImageExpand.src = link;
+  cardImageExpand.alt = name;
+  openPopup(popupExpandElement);
+};
+
 initialCards.forEach((item) => {
   // Создадим экземпляр карточки
-  const card = new Card(item);
+  const card = new Card(item, handleExpandCard);
   // Создаём карточку и возвращаем наружу
   const cardElement = card.generateCard();
   // Добавляем в DOM
@@ -47,12 +55,15 @@ buttonsClosePopup.forEach((buttonClose) => {
   });
 });
 
-//Закрытие popup - по кнопке Esc
-function closePopupEsc(evt) {
-  if (evt.key === "Escape") {
-    closePopup(document.querySelector('.popup_opened'));
-  }
-}
+
+//функция закрытия попапов по по клику на Esc
+const closePopupEsc = (evt) => {
+  popups.forEach((popup)=> {
+    if(evt.key === 'Escape') {
+      closePopup(popup);
+    };
+  });
+};
 
 
 // Функция для закрытия всех попапов по оверлею

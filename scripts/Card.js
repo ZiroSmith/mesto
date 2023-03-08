@@ -1,8 +1,9 @@
 class Card {
-    constructor(data) {
+    constructor(data, handleExpandCard) {
         this._name = data.name;
         this._link = data.link;
         this._alt = data.alt;
+        this._handleExpandCard = handleExpandCard;
     }
 
 
@@ -22,22 +23,17 @@ class Card {
           this._element = this._getTemplate();
         // Слушатель событий при генерации карточки
           this._setEventListeners();
-      
-        // Добавим данные
-          this._element.querySelector('.card__image').src = this._link;
-          this._element.querySelector('.card__image').alt = this._name;
-          this._element.querySelector('.card__text').textContent = this._name;
+
+          this._linkImage = this._element.querySelector('.card__image');
+          this._nameImage = this._element.querySelector('.card__text');
+
+          // Добавим данные
+          this._linkImage.src = this._link;
+          this._linkImage.alt = this._name;
+          this._nameImage.textContent = this._name;
       
         // Вернём элемент наружу
           return this._element;
-    }
-    
-    //Открытие popup УВЕЛИЧЕНИЯ КАРТИНКИ
-    _handleOpenPopup() {
-        openPopup(popupExpandElement);
-        cardTextExpand.textContent = this._name;
-        cardImageExpand.src = this._link;
-        cardImageExpand.alt = this._name;
     }
 
 
@@ -51,7 +47,8 @@ class Card {
 
 
     _setEventListeners() {
-        this._element.querySelector('.card__image').addEventListener("click", () => { this._handleOpenPopup(); });
+        this._element.querySelector('.card__image').addEventListener("click", () => {
+           this._handleExpandCard(this._name, this._link); });
 
         this._element.querySelector('.card__like-button').addEventListener('click', () => this._handleLikeClick());
 
@@ -60,7 +57,5 @@ class Card {
       }
 
 }
-
-
 
   export default Card;
