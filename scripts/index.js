@@ -1,4 +1,10 @@
+import { initialCards, validationConfig, popups, popupEditElement,popupAddElement, popupExpandElement,
+   formProfileElement, popupButtonOpen, nameInput, jobInput, profileName, 
+   profileProfession, cardSection, formElementAdd, inputTitle, inputLink, popupButtonAdd, 
+   cardTextExpand, cardImageExpand } from "./constans.js";
+
 import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
 
 ////Открытие popup УВЕЛИЧЕНИЯ КАРТИНКИ
 const handleExpandCard = (name,link) => {
@@ -8,14 +14,12 @@ const handleExpandCard = (name,link) => {
   openPopup(popupExpandElement);
 };
 
-initialCards.forEach((item) => {
-  // Создадим экземпляр карточки
-  const card = new Card(item, handleExpandCard);
-  // Создаём карточку и возвращаем наружу
-  const cardElement = card.generateCard();
-  // Добавляем в DOM
-  document.querySelector('.elements').append(cardElement);
-});
+
+//Запуск валидации
+const validFormEditProfile = new FormValidator(validationConfig, formProfileElement);
+validFormEditProfile.enableValidation();
+const validFormAddCard = new FormValidator(validationConfig, formElementAdd);
+validFormAddCard.enableValidation();
 
 
 // Универсальная функция открытия popup
@@ -30,6 +34,8 @@ const openPopupEdit = function(){
   openPopup(popupEditElement);
   nameInput.value = profileName.textContent;
   jobInput.value = profileProfession.textContent;
+  const validator = new FormValidator(validationConfig, formProfileElement);
+  validator.resetValidation();
 }
 popupButtonOpen.addEventListener('click', openPopupEdit);
 
@@ -37,7 +43,8 @@ popupButtonOpen.addEventListener('click', openPopupEdit);
 //Открытие popup ДОБАВЛЕНИЯ КАРТОЧКИ
 const openPopupAdd = function(){
   openPopup(popupAddElement);
-  formElementAdd.reset();
+  const validator = new FormValidator(validationConfig, formElementAdd);
+  validator.resetValidation();
 }
 popupButtonAdd.addEventListener('click', openPopupAdd);
 
@@ -48,32 +55,26 @@ const closePopup = function(popupElement) {
   document.removeEventListener('keydown', closePopupEsc);
 }
 
-//Закрытие popup - Клик по крестику
-buttonsClosePopup.forEach((buttonClose) => {
-  buttonClose.addEventListener('click', function (evt) {
-    closePopup(evt.target.closest('.popup'))
-  });
-});
 
-
-//функция закрытия попапов по по клику на Esc
+// //функция закрытия попапов по клику на Esc
 const closePopupEsc = (evt) => {
-  popups.forEach((popup)=> {
-    if(evt.key === 'Escape') {
-      closePopup(popup);
-    };
-  });
+  if(evt.key === 'Escape') {
+    popups.forEach(closePopup);
+  }
 };
 
-
-// Функция для закрытия всех попапов по оверлею
+// Закрытие попапов по крестику и оверлею
 popups.forEach((popup) => {
-	popup.addEventListener('click', (evt) => {
-		if (evt.target.classList.contains('popup')) {
-			closePopup(popup);
-		}
-	});
-});
+  popup.addEventListener('mousedown', (evt) => {
+      if (evt.target.classList.contains('popup_opened')) {
+          closePopup(popup)
+      }
+      if (evt.target.classList.contains('popup__close-button')) {
+        closePopup(popup)
+      }
+  })
+})
+
 
 // Обработчик «отправки» формы профиля
 function submitEditProfileForm (evt) {
@@ -87,6 +88,22 @@ function submitEditProfileForm (evt) {
 formProfileElement.addEventListener('submit', submitEditProfileForm);
 
 
+function createCard(item) {
+  // Создаёт карточку и возвращает результат
+  const card = new Card(item, handleExpandCard, '#card-template');
+  const cardElement = card.generateCard();
+
+  return cardElement;
+}
+
+
+initialCards.forEach((item) => {
+  const cardElement = createCard(item);
+  // Добавляем в DOM
+  cardSection.append(cardElement);
+});
+
+
 //Добавление карточки юзером
 function handleAddCard (evt) {
   evt.preventDefault(); 
@@ -95,10 +112,9 @@ function handleAddCard (evt) {
   const alt = inputTitle.value;
   const link = inputLink.value;
 
-  const cardNew = new Card({ name: title, link: link, alt: alt });
-  const cardNewElement = cardNew.generateCard();
+  const cardNewElement = createCard({ name: title, link: link, alt: alt });
 
-  elements.prepend(cardNewElement);
+  cardSection.prepend(cardNewElement);
   evt.target.reset();
   closePopup(popupAddElement);
 };

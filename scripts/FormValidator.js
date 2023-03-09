@@ -2,6 +2,8 @@ export default class FormValidator {
   constructor(validConfig, form) {
     this._validConfig = validConfig;
     this._form = form;
+    this._buttonSubmit = this._form.querySelector(this._validConfig.submitButtonSelector);
+    this._inputList = this._form.querySelectorAll(this._validConfig.inputSelector);
   };
   
   //Находит куда был ввод, проверяет валидность
@@ -30,7 +32,6 @@ export default class FormValidator {
 
   //Активация и дезактивация кнопки в зависимости от валидности
   _toggleButton(){
-    this._buttonSubmit = this._form.querySelector(this._validConfig.submitButtonSelector);
     //Проверка валидности
     this._isFormValid = this._form.checkValidity();
     //Если не валидна - дезактивировать
@@ -43,23 +44,31 @@ export default class FormValidator {
   enableValidation() {
     //Слушатель ввода и "замок" кнопки
     this._form.addEventListener('input', () => {
-      this._toggleButton(this._form, this._validConfig);
+      this._toggleButton();
     });
   
     this._addInputListeners(this._form, this._validConfig);
     //По дефолту кнопка не активна
-    this._toggleButton(this._form, this._validConfig);
+    this._toggleButton();
 
     this._form.addEventListener('reset', () => {
       setTimeout(() => {
-       this._toggleButton(this._form, this._validConfig);
+       this._toggleButton();
       }, 0);
     });
   };
+
+
+  resetValidation() {
+    this._toggleButton();
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement)
+    });
+
+  }
   
   //Находит все формы, добавляет обработчик события ввод - проверку валидности полей
-  _addInputListeners(){
-    this._inputList = this._form.querySelectorAll(this._validConfig.inputSelector);  
+  _addInputListeners(){  
     this._inputList.forEach( (item) => {
       item.addEventListener('input', (evt) => {
         this._checkInputValidity(evt,this._validConfig);
