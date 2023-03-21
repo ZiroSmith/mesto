@@ -51,7 +51,7 @@ const nameInput = document.querySelector(".form__input_type_name");
 const jobInput = document.querySelector(".form__input_type_profession");
 const profileName = document.querySelector(".profile__name");
 const profileProfession = document.querySelector(".profile__profession");
-const cardSection = document.querySelector(".elements");
+const cardSectionSelector = document.querySelector(".elements");
 const formElementAdd = document.querySelector(".form_add");
 const inputTitle = document.querySelector(".form__input_type_title");
 const inputLink = document.querySelector(".form__input_type_link");
@@ -72,7 +72,7 @@ export {
   jobInput,
   profileName,
   profileProfession,
-  cardSection,
+  cardSectionSelector,
   formElementAdd,
   inputTitle,
   inputLink,

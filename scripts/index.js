@@ -11,7 +11,7 @@ import {
   jobInput,
   profileName,
   profileProfession,
-  cardSection,
+  cardSectionSelector,
   formElementAdd,
   inputTitle,
   inputLink,
@@ -22,14 +22,16 @@ import {
 
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
+import Section from "./Section.js";
+import PopupWithImage from "./PopupWithImage.js";
 
-////Открытие popup УВЕЛИЧЕНИЯ КАРТИНКИ
-const handleExpandCard = (name, link) => {
-  cardTextExpand.textContent = name;
-  cardImageExpand.src = link;
-  cardImageExpand.alt = name;
-  openPopup(popupExpandElement);
-};
+// ////Открытие popup УВЕЛИЧЕНИЯ КАРТИНКИ
+// const handleExpandCard = (name, link) => {
+//   cardTextExpand.textContent = name;
+//   cardImageExpand.src = link;
+//   cardImageExpand.alt = name;
+//   openPopup(popupExpandElement);
+// };
 
 //Запуск валидации
 const validFormEditProfile = new FormValidator(
@@ -39,6 +41,36 @@ const validFormEditProfile = new FormValidator(
 validFormEditProfile.enableValidation();
 const validFormAddCard = new FormValidator(validationConfig, formElementAdd);
 validFormAddCard.enableValidation();
+
+const containerSelector = ".elements";
+const popupWithImageSelector = ".popup_type_expand"
+
+
+const popupWithImage = new PopupWithImage(popupWithImageSelector);
+popupWithImage.setEventListeners();
+
+const clickImageHandler = (data) => {
+  popupWithImage.open(data);
+}
+
+
+function createCard(item) {
+  // Создаёт карточку и возвращает результат
+  const card = new Card(item, clickImageHandler, "#card-template");
+  const cardElement = card.generateCard();
+
+  return cardElement;
+}
+
+const cardSectionData = {
+  items: initialCards,
+  renderer: createCard
+}
+
+const cardSection = new Section(cardSectionData, containerSelector);
+
+cardSection.renderItems();
+
 
 // Универсальная функция открытия popup
 function openPopup(popup) {
@@ -69,24 +101,24 @@ const closePopup = function (popupElement) {
   document.removeEventListener("keydown", closePopupEsc);
 };
 
-// //функция закрытия попапов по клику на Esc
-const closePopupEsc = (evt) => {
-  if (evt.key === "Escape") {
-    popups.forEach(closePopup);
-  }
-};
+// // //функция закрытия попапов по клику на Esc
+// const closePopupEsc = (evt) => {
+//   if (evt.key === "Escape") {
+//     popups.forEach(closePopup);
+//   }
+// };
 
-// Закрытие попапов по крестику и оверлею
-popups.forEach((popup) => {
-  popup.addEventListener("mousedown", (evt) => {
-    if (evt.target.classList.contains("popup_opened")) {
-      closePopup(popup);
-    }
-    if (evt.target.classList.contains("popup__close-button")) {
-      closePopup(popup);
-    }
-  });
-});
+// // Закрытие попапов по крестику и оверлею
+// popups.forEach((popup) => {
+//   popup.addEventListener("mousedown", (evt) => {
+//     if (evt.target.classList.contains("popup_opened")) {
+//       closePopup(popup);
+//     }
+//     if (evt.target.classList.contains("popup__close-button")) {
+//       closePopup(popup);
+//     }
+//   });
+// });
 
 // Обработчик «отправки» формы профиля
 function submitEditProfileForm(evt) {
@@ -99,19 +131,13 @@ function submitEditProfileForm(evt) {
 // Обработчик сохранения изменений профиля:
 formProfileElement.addEventListener("submit", submitEditProfileForm);
 
-function createCard(item) {
-  // Создаёт карточку и возвращает результат
-  const card = new Card(item, handleExpandCard, "#card-template");
-  const cardElement = card.generateCard();
 
-  return cardElement;
-}
 
-initialCards.forEach((item) => {
-  const cardElement = createCard(item);
-  // Добавляем в DOM
-  cardSection.append(cardElement);
-});
+// initialCards.forEach((item) => {
+//   const cardElement = createCard(item);
+//   // Добавляем в DOM
+//   cardSection.append(cardElement);
+// });
 
 //Добавление карточки юзером
 function handleAddCard(evt) {
@@ -123,7 +149,7 @@ function handleAddCard(evt) {
 
   const cardNewElement = createCard({ name: title, link: link, alt: alt });
 
-  cardSection.prepend(cardNewElement);
+  cardSectionSelector.prepend(cardNewElement);
   evt.target.reset();
   closePopup(popupAddElement);
 }

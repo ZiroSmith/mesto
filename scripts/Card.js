@@ -1,9 +1,9 @@
 class Card {
-  constructor(data, handleExpandCard, template) {
+  constructor(data, clickImageHandler, template) {
     this._name = data.name;
     this._link = data.link;
     this._alt = data.alt;
-    this._handleExpandCard = handleExpandCard;
+    this._clickImageHandler = clickImageHandler; //_handleExpandCard
     this._template = template;
   }
 
@@ -45,9 +45,13 @@ class Card {
     this._element.remove();
   }
 
+  _handleImageClick() {
+    this._clickImageHandler({ name: this._name, link: this._link});
+  }
+
   _setEventListeners() {
     this._linkImage.addEventListener("click", () => {
-      this._handleExpandCard(this._name, this._link);
+      this._handleImageClick();
     });
 
     this._likeButton.addEventListener("click", () => this._handleLikeClick());
