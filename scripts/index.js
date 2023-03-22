@@ -4,8 +4,13 @@ import {
   formProfileElement,
   popupButtonOpen,
   formElementAdd,
-  popupButtonAdd
-
+  popupButtonAdd,
+  containerSelector,
+  popupWithImageSelector,
+  popupAddCardSelector,
+  popupEditProfileSelector,
+  nameSelector,
+  aboutSelector
 } from "./constans.js";
 
 import Card from "./Card.js";
@@ -16,15 +21,7 @@ import PopupWithForm from "./PopupWithForm.js";
 import UserInfo from "./UserInfo.js";
 
 
-const containerSelector = ".elements";
-const popupWithImageSelector = ".popup_type_expand";
-const popupAddCardSelector = ".popup_type_add";
-const popupEditProfileSelector = ".popup_type_item";
-const nameSelector = ".profile__name";
-const aboutSelector = ".profile__profession";
-
-
-//----------------------------------- ВАЛИДАЦИЯ ------------------------------//
+//----------------------------------- ВАЛИДАЦИЯ -------------------------------//
 const validFormEditProfile = new FormValidator(
   validationConfig,
   formProfileElement
@@ -35,7 +32,7 @@ validFormAddCard.enableValidation();
 //-----------------------------------------------------------------------------//
 
 
-//------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
 const userInfo = new UserInfo({ nameSelector, aboutSelector });
 
 const submitEditProfileHandler = ({ title, data }) => {
@@ -43,10 +40,10 @@ const submitEditProfileHandler = ({ title, data }) => {
 }
 const popupEditProfile = new PopupWithForm(popupEditProfileSelector, submitEditProfileHandler);
 popupEditProfile.setEventListeners();
-//-------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
 
 
-//--------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
 const popupWithImage = new PopupWithImage(popupWithImageSelector);
 popupWithImage.setEventListeners();
 
@@ -54,6 +51,10 @@ const clickImageHandler = (data) => {
   popupWithImage.open(data);
 }
 
+//------------------------------------------------------------------------------
+
+
+//-------------------------------------------------------------------------------
 function createCard(item) {
   // Создаёт карточку и возвращает результат
   const card = new Card(item, clickImageHandler, "#card-template");
@@ -61,7 +62,7 @@ function createCard(item) {
 
   return cardElement;
 }
-//---------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 
 //------------------------------------------------------------------------------
@@ -95,30 +96,3 @@ const openPopupAdd = function () {
   popupAddCard.open();
 };
 popupButtonAdd.addEventListener("click", openPopupAdd);
-
-// //Закрытие popup
-// const closePopup = function (popupElement) {
-//   popupElement.classList.remove("popup_opened");
-//   document.removeEventListener("keydown", closePopupEsc);
-// };
-
-// // //функция закрытия попапов по клику на Esc
-// const closePopupEsc = (evt) => {
-//   if (evt.key === "Escape") {
-//     popups.forEach(closePopup);
-//   }
-// };
-
-// // Закрытие попапов по крестику и оверлею
-// popups.forEach((popup) => {
-//   popup.addEventListener("mousedown", (evt) => {
-//     if (evt.target.classList.contains("popup_opened")) {
-//       closePopup(popup);
-//     }
-//     if (evt.target.classList.contains("popup__close-button")) {
-//       closePopup(popup);
-//     }
-//   });
-// });
-
-

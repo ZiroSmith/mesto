@@ -3,22 +3,26 @@ export default class Popup {
         this._popup = document.querySelector(popupSelector)
     }
 
-
+    // Открыть
     open() {
         this._popup.classList.add('popup_opened');
+        document.addEventListener("keydown", this._handleEscClose);
     }
 
-
+    // Закрыть
     close() {
         this._popup.classList.remove('popup_opened');
+        document.removeEventListener("keydown", this._handleEscClose);
     }
 
+    // Закрытие по Esc
+    _handleEscClose = (evt) => { 
+        if (evt.key === "Escape") {
+             this.close();
+        }
+    }
 
-    // _handleEscClose() {
-
-    // }
-
-
+    // Слушатели на закрытие по крестику и оверлею
     setEventListeners() {
         this._popup.addEventListener("mousedown", (evt) => {
             if (evt.target.classList.contains("popup_opened")) {
@@ -29,6 +33,5 @@ export default class Popup {
             }
         });
     }
-    
 
 }
