@@ -14,9 +14,9 @@ export default class Popup {
     }
 
 
-    _handleEscClose() {
+    // _handleEscClose() {
 
-    }
+    // }
 
 
     setEventListeners() {

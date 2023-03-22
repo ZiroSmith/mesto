@@ -28,29 +28,29 @@
     <footer class="footer">
         <p class="footer__text">&copy; 2022 Mesto Russia</p>
     </footer>
-    <!-- Pop-up Редактирования-->
+    <!-- Pop-up Редактирования профиля-->
     <div class="popup popup_type_item">
       <div class="popup__container">
         <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
         <form class="form form_edit" name="profile-info" novalidate>
           <h2 class="form__title">Редактировать профиль</h2>
-          <input id="name-input" class="form__input form__input_type_name" name="name" type="text" placeholder="Имя" required minlength="2" maxlength="40">
+          <input id="name-input" class="form__input form__input_type_name" name="title" type="text" placeholder="Имя" required minlength="2" maxlength="40">
           <span id="name-input-error" class="form__input-error"></span> 
-          <input id="profession-input" class="form__input form__input_type_profession" name="profession" type="text" placeholder="Профессия" required minlength="2" maxlength="200">
+          <input id="profession-input" class="form__input form__input_type_profession" name="data" type="text" placeholder="Профессия" required minlength="2" maxlength="200">
           <span id="profession-input-error" class="form__input-error"></span>
           <button class="form__save-button form__submit" type="submit">Сохранить</button>
         </form>
       </div>
     </div>
-    <!-- Pop-up Добавить-->
+    <!-- Pop-up Добавить карточку-->
     <div class="popup popup_type_add">
       <div class="popup__container">
         <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
         <form class="form form_add" name="add-card" novalidate>
           <h2 class="form__title">Новое место</h2>
-          <input id="place-input" class="form__input form__input_type_title" name="name" type="text" placeholder="Название" required minlength="2" maxlength="30">
+          <input id="place-input" class="form__input form__input_type_title" name="title" type="text" placeholder="Название" required minlength="2" maxlength="30">
           <span id="place-input-error" class="form__input-error"></span>
-          <input id="url-input" class="form__input form__input_type_link" name="profession" placeholder="Ссылка на картинку" required type="url">
+          <input id="url-input" class="form__input form__input_type_link" name="data" placeholder="Ссылка на картинку" required type="url">
           <span id="url-input-error" class="form__input-error"></span>
           <button class="form__save-button form__save-button_create form__submit" type="submit">Создать</button>
         </form>
