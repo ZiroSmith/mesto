@@ -2,9 +2,9 @@ import {
   initialCards,
   validationConfig,
   formProfileElement,
-  popupButtonOpen,
+  buttonOpenEditProfilePopup,
   formElementAdd,
-  popupButtonAdd,
+  buttonOpenAddCardPopup,
   containerSelector,
   popupWithImageSelector,
   popupAddCardSelector,
@@ -86,7 +86,7 @@ const openPopupEdit = function () {
   popupEditProfile.setInputValues(userInfo.getUserInfo());
   validFormEditProfile.resetValidation();
 };
-popupButtonOpen.addEventListener("click", openPopupEdit);
+buttonOpenEditProfilePopup.addEventListener("click", openPopupEdit);
 
 //Открытие popup ДОБАВЛЕНИЯ КАРТОЧКИ
 const openPopupAdd = function () {
@@ -94,4 +94,4 @@ const openPopupAdd = function () {
   validFormAddCard.resetValidation();
   popupAddCard.open();
 };
-popupButtonAdd.addEventListener("click", openPopupAdd);
+buttonOpenAddCardPopup.addEventListener("click", openPopupAdd);

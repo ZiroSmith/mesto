@@ -42,9 +42,9 @@ const validationConfig = {
 };
 
 const formProfileElement = document.querySelector(".form_edit");
-const popupButtonOpen = document.querySelector(".profile__edit-button");
+const buttonOpenEditProfilePopup = document.querySelector(".profile__edit-button");
 const formElementAdd = document.querySelector(".form_add");
-const popupButtonAdd = document.querySelector(".profile__add-button");
+const buttonOpenAddCardPopup = document.querySelector(".profile__add-button");
 const containerSelector = ".elements";
 const popupWithImageSelector = ".popup_type_expand";
 const popupAddCardSelector = ".popup_type_add";
@@ -56,9 +56,9 @@ export {
   initialCards,
   validationConfig,
   formProfileElement,
-  popupButtonOpen,
+  buttonOpenEditProfilePopup,
   formElementAdd,
-  popupButtonAdd,
+  buttonOpenAddCardPopup,
   containerSelector,
   popupWithImageSelector,
   popupAddCardSelector,
