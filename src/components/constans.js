@@ -1,36 +1,36 @@
 //Массив стоковых карточек
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-    alt: "Архыз",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-    alt: "Челябинская область",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-    alt: "Иваново",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-    alt: "Камчатка",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-    alt: "Холмогорский район",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-    alt: "Байкал",
-  },
-];
+// const initialCards = [
+//   {
+//     name: "Архыз",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+//     alt: "Архыз",
+//   },
+//   {
+//     name: "Челябинская область",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+//     alt: "Челябинская область",
+//   },
+//   {
+//     name: "Иваново",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+//     alt: "Иваново",
+//   },
+//   {
+//     name: "Камчатка",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+//     alt: "Камчатка",
+//   },
+//   {
+//     name: "Холмогорский район",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+//     alt: "Холмогорский район",
+//   },
+//   {
+//     name: "Байкал",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+//     alt: "Байкал",
+//   },
+// ];
 
 const validationConfig = {
   formSelector: ".form",
@@ -53,10 +53,10 @@ const popupEditAvatarSelector = ".popup_type_avatar";
 const popupAddCardSelector = ".popup_type_add";
 const popupEditProfileSelector = ".popup_type_item";
 const nameSelector = ".profile__name";
-const aboutSelector = ".profile__profession";
+const jobSelector = ".profile__profession";
+const avatarSelector = ".profile__avatar-image";
 
 export {
-  initialCards,
   validationConfig,
   formProfileElement,
   buttonOpenEditProfilePopup,
@@ -70,5 +70,6 @@ export {
   popupAddCardSelector,
   popupEditProfileSelector,
   nameSelector,
-  aboutSelector
+  jobSelector,
+  avatarSelector
 };
