@@ -4,9 +4,12 @@ import {
   formProfileElement,
   buttonOpenEditProfilePopup,
   formElementAdd,
+  formElementEditAvatar,
   buttonOpenAddCardPopup,
+  buttonOpenEditAvatarPopup,
   containerSelector,
   popupWithImageSelector,
+  popupEditAvatarSelector,
   popupAddCardSelector,
   popupEditProfileSelector,
   nameSelector,
@@ -17,17 +20,19 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+//import UserAvatar from "../components/UserAvatar.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import "../pages/index.css";
 
 
 //----------------------------------- ВАЛИДАЦИЯ -------------------------------//
-const validFormEditProfile = new FormValidator(
-  validationConfig,
-  formProfileElement
-);
+const validFormEditProfile = new FormValidator(validationConfig, formProfileElement);
 validFormEditProfile.enableValidation();
+
+const validFormEditAvatar = new FormValidator(validationConfig, formElementEditAvatar);
+validFormEditAvatar.enableValidation();
+
 const validFormAddCard = new FormValidator(validationConfig, formElementAdd);
 validFormAddCard.enableValidation();
 //-----------------------------------------------------------------------------//
@@ -41,6 +46,12 @@ const submitEditProfileHandler = ({ title, data }) => {
 }
 const popupEditProfile = new PopupWithForm(popupEditProfileSelector, submitEditProfileHandler);
 popupEditProfile.setEventListeners();
+//-------------------------------------------------------------------------------
+
+
+//----------------------------Сменить аватар-------------------------------------
+const userAvatar = new PopupWithForm(popupEditAvatarSelector);
+userAvatar.setEventListeners();
 //-------------------------------------------------------------------------------
 
 
@@ -64,7 +75,7 @@ function createCard(item) {
 //-------------------------------------------------------------------------------
 
 
-//-------------------Сабмит добавленрия карточки---------------------------------
+//-------------------Сабмит добавления карточки---------------------------------
 const submitAddCardHandler = ({ title, data }) => {
   cardSection.addItem(createCard({ name: title, link: data }));
 }
@@ -88,6 +99,12 @@ const openPopupEdit = function () {
 };
 buttonOpenEditProfilePopup.addEventListener("click", openPopupEdit);
 
+//Открытие popup ЗАГРУЗКИ АВАТАРА
+const openPopupEditAvatar = function () {
+  userAvatar.open();
+};
+buttonOpenEditAvatarPopup.addEventListener("click", openPopupEditAvatar);
+
 //Открытие popup ДОБАВЛЕНИЯ КАРТОЧКИ
 const openPopupAdd = function () {
   formElementAdd.reset();
@@ -95,3 +112,9 @@ const openPopupAdd = function () {
   popupAddCard.open();
 };
 buttonOpenAddCardPopup.addEventListener("click", openPopupAdd);
+
+//Открытие popup ПОДТВЕРЖДЕНИЯ УДАЛЕНИЯ КАРТОЧКИ
+// const openPopupDeleteCard = function () {
+//   userAvatar.open();
+// };
+// buttonOpenDeleteCardPopup.addEventListener("click", openPopupDeleteCard);

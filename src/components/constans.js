@@ -44,9 +44,12 @@ const validationConfig = {
 const formProfileElement = document.querySelector(".form_edit");
 const buttonOpenEditProfilePopup = document.querySelector(".profile__edit-button");
 const formElementAdd = document.querySelector(".form_add");
+const formElementEditAvatar = document.querySelector(".form_avatar");
 const buttonOpenAddCardPopup = document.querySelector(".profile__add-button");
+const buttonOpenEditAvatarPopup = document.querySelector(".profile__avatar-button");
 const containerSelector = ".elements";
 const popupWithImageSelector = ".popup_type_expand";
+const popupEditAvatarSelector = ".popup_type_avatar";
 const popupAddCardSelector = ".popup_type_add";
 const popupEditProfileSelector = ".popup_type_item";
 const nameSelector = ".profile__name";
@@ -58,9 +61,12 @@ export {
   formProfileElement,
   buttonOpenEditProfilePopup,
   formElementAdd,
+  formElementEditAvatar,
   buttonOpenAddCardPopup,
+  buttonOpenEditAvatarPopup,
   containerSelector,
   popupWithImageSelector,
+  popupEditAvatarSelector,
   popupAddCardSelector,
   popupEditProfileSelector,
   nameSelector,

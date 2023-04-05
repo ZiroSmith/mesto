@@ -14,7 +14,10 @@
     </header>
     <main class="content">
       <section class="profile">
-          <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватар">
+          <div class="profile__avatar">
+            <button class="profile__avatar-button" type="button" aria-label="Изменить Аватар"></button>
+            <img class="profile__avatar-image" src="<%=require('./images/avatar.jpg')%>" alt="Аватар">
+          </div>
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button class="profile__edit-button" type="button" aria-label="Редактировать"></button>
@@ -55,6 +58,18 @@
         </form>
       </div>
     </div>
+    <!-- Pop-up Сменить аватар пользователя-->
+    <div class="popup popup_type_avatar">
+      <div class="popup__container">
+        <button type="button" class="popup__close-button"></button>
+        <form class="form form_avatar" name="avatarUpdateForm" novalidate>
+          <h3 class="form__title">Обновить аватар</h3>
+            <input id="avatarLink" class="form__input form__input_type_link" name="avatarLink" placeholder="Ссылка на картинку" required type="url">
+            <span class="form__input-error"></span>
+          <button type="submit" class="form__save-button form__save-button_create form__submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
     <!-- Pop-up Раскрытия картинки-->
     <div class="popup popup_type_expand">
       <div class="popup__container popup__container_expand">
@@ -63,6 +78,16 @@
           <img class="popup__image-expand" src="#" alt="">
           <h2 class="popup__text-expand"></h2>
         </div>
+      </div>
+    </div>
+    <!-- Pop-up Подтверждения удаления-->
+    <div class="popup popup_type_delete">
+      <div class="popup__container">
+        <button type="button" class="popup__close-button"></button>
+        <form class="form" name="confirmDelForm" novalidate>
+          <h3 class="form__title">Вы уверены?</h3>
+          <button type="submit" class="form__save-button form__save-button_create form__submit">Да</button>
+        </form>
       </div>
     </div>
     <template id="card-template">
