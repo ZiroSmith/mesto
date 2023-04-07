@@ -13,7 +13,6 @@ const formElementAdd = document.querySelector(".form_add");
 const formElementEditAvatar = document.querySelector(".form_avatar");
 const buttonOpenAddCardPopup = document.querySelector(".profile__add-button");
 const buttonOpenEditAvatarPopup = document.querySelector(".profile__avatar-button");
-const buttonDeleteCardPopup = document.querySelector(".card__del-button");
 const containerSelector = ".elements";
 const popupWithImageSelector = ".popup_type_expand";
 const popupEditAvatarSelector = ".popup_type_avatar";
@@ -32,7 +31,6 @@ export {
   formElementEditAvatar,
   buttonOpenAddCardPopup,
   buttonOpenEditAvatarPopup,
-  buttonDeleteCardPopup,
   containerSelector,
   popupWithImageSelector,
   popupEditAvatarSelector,

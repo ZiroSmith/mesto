@@ -6,7 +6,6 @@ import {
   formElementEditAvatar,
   buttonOpenAddCardPopup,
   buttonOpenEditAvatarPopup,
-  buttonDeleteCardPopup,
   containerSelector,
   popupWithImageSelector,
   popupEditAvatarSelector,
@@ -39,7 +38,7 @@ const api = new Api({
 
 const userInfo = new UserInfo({ nameSelector, jobSelector, avatarSelector });
 
-
+let userId;
 const dataName = document.querySelector('.form__input_type_name');
 const dataJob = document.querySelector('.form__input_type_profession');
 
@@ -49,7 +48,7 @@ function createCard(item) {
   const card = new Card(item, clickImageHandler, '#card-template', {openPopupDeleteCard: () => {
     popupDeleteCardConfirm.open();
     popupDeleteCardConfirm.setSubmitAction(() => card.deleteCard());
-  }}, userInfo.userId, api);
+  }}, userId, api);
   return card.generateCard();
 }
 
@@ -67,6 +66,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   // Деструктуризация ответа от сервера
   .then(([data, cards]) => {
     // Отрисовка данных пользователя
+    userId = data._id;
     userInfo.setUserInfo({ name: data.name, about: data.about });
     userInfo.setUserAvatar({ avatar: data.avatar });
     // Отрисовка карточек
@@ -77,7 +77,6 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     console.error(err)
   });
 //------------------------------------------------------------------------------
-
 
 
 //---------------------Форма для изменения аватара------------------------------
@@ -127,22 +126,13 @@ popupEditForm.setEventListeners();
 //------------------------------------------------------------------------------
 
 //-------------------Сабмит добавления карточки---------------------------------
-// const submitAddCardHandler = ({ title, data }) => {
-//   newSection.addItem(createCard({ name: title, link: data }));
-// }
-// const popupAddCard = new PopupWithForm(popupAddCardSelector, submitAddCardHandler);
-// popupAddCard.setEventListeners();
-//------------------------------------------------------------------------------
-
-
 const popupAddCard = new PopupWithForm(popupAddCardSelector,
   (data) => {
     popupAddCard.loading(true);
     const item = {
       link: data.link,
-      name: data.title,
+      name: data.name,
     }
-    //console.log('WARNING!!!!!!!!!!!!!!!!!!!!');
     api.addCard(item)
       .then((element) => {
         newSection.addItem(createCard(element), true);
@@ -157,6 +147,7 @@ const popupAddCard = new PopupWithForm(popupAddCardSelector,
   }
 );
 popupAddCard.setEventListeners();
+//------------------------------------------------------------------------------
 
 
 //----------------------------Развернуть картинку--------------------------------
@@ -211,9 +202,3 @@ const openPopupAdd = function () {
   popupAddCard.open();
 };
 buttonOpenAddCardPopup.addEventListener("click", openPopupAdd);
-
-//Открытие popup ПОДТВЕРЖДЕНИЯ УДАЛЕНИЯ КАРТОЧКИ
-// const openPopupDeleteCard = function () {
-//   popupDeleteCardConfirm.open();
-// };
-// buttonDeleteCardPopup.addEventListener("click", openPopupDeleteCard);

@@ -23,16 +23,6 @@ class Card {
   }
 
 //---------------------------------Блок "Создания Карточек"--------------------------
-  // Подтвердить, что карточка именно наша
-  _checkOwner() {
-    if (this._ownerId === this._userId) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-
   generateCard() {
     this._element = this._getTemplate();
 
@@ -51,9 +41,10 @@ class Card {
     this._setEventListeners();
 
     //----------------------Добавим условия-------------------
-    if (!this._checkOwner()) {// если не наша карточка - убрать кнопку удаления
+    if (this._ownerId !== this._userId) {
       this._deleteButton.remove();
-    }
+      }
+
     if (this._checkMyLike()) {// если я лайкнул - лайк активен
       this._handleToggleLike();
       this._myLike++;
@@ -62,7 +53,7 @@ class Card {
       this._likeNumber.textContent = this._likesQuantity;
     }
     //-------------------------------------------------------
-
+    
     // Вернём элемент наружу
     return this._element;
   }
@@ -76,7 +67,6 @@ class Card {
     .catch((err) => alert(err));
   }
 //-----------------------------------------------------------------------------------
-
 
 
 //----------------------------------------Блок "Like"--------------------------------
@@ -132,11 +122,11 @@ class Card {
   _setEventListeners() {
     this._likeButton.addEventListener('click', () => {this._switchLike();})
 
-    if (this._checkOwner()) {
-      this._deleteButton.addEventListener('click', () => {
+    
+    this._deleteButton.addEventListener('click', () => {
           this._openPopupDeleteCard();
         });
-    }
+    
 
     this._linkImage.addEventListener('click', () => {
         this._clickImageHandler(this._data);
