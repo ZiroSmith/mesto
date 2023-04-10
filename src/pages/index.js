@@ -44,13 +44,13 @@ const dataJob = document.querySelector('.form__input_type_profession');
 
 //-------------------Отрисовка изначальных данных при загрузке--------------------
 //Создаёт карточку и возвращает результат
-function createCard(item) {
-  const card = new Card(item, clickImageHandler, '#card-template', {openPopupDeleteCard: () => {
-    popupDeleteCardConfirm.open();
-    popupDeleteCardConfirm.setSubmitAction(() => card.deleteCard());
-  }}, userId, api);
-  return card.generateCard();
-}
+function createCard(item) { 
+  const card = new Card(item, handleCardClick, handleCardDelete, '#card-template', {openPopupDeleteCard: () => { 
+    popupDeleteCardConfirm.open(); 
+    popupDeleteCardConfirm.setSubmitAction(() => card.deleteCard()); 
+  }}, userId, api); 
+  return card.generateCard(); 
+} 
 
 //Генерация карточек
 const newSection = new Section(
@@ -109,13 +109,11 @@ const popupEditForm = new PopupWithForm(popupEditProfileSelector, (data) => {
 
       .then((res) => {
         userInfo.setUserInfo(res);
-        //console.log('ВСЁ РАБОТАЕТ!');
         popupEditForm.close();
       })
 
       .catch((err) => {
         console.error(err)
-        //console.log('ГРУСТНО-НЕВКУСНО НЕ РАБОТАЕТ');
       })
 
       .finally(() => {
@@ -129,11 +127,7 @@ popupEditForm.setEventListeners();
 const popupAddCard = new PopupWithForm(popupAddCardSelector,
   (data) => {
     popupAddCard.loading(true);
-    const item = {
-      link: data.link,
-      name: data.name,
-    }
-    api.addCard(item)
+    api.addCard(data)
       .then((element) => {
         newSection.addItem(createCard(element), true);
         popupAddCard.close();
@@ -154,7 +148,7 @@ popupAddCard.setEventListeners();
 const popupWithImage = new PopupWithImage(popupWithImageSelector);
 popupWithImage.setEventListeners();
 
-const clickImageHandler = (data) => {
+const handleCardClick = (data) => {
   popupWithImage.open(data);
 }
 //------------------------------------------------------------------------------
@@ -163,6 +157,10 @@ const clickImageHandler = (data) => {
 //-------------------------------Удалить карточку--------------------------------
 const popupDeleteCardConfirm = new PopupDeleteCardConfirm(popupDeleteCardSelector);
 popupDeleteCardConfirm.setEventListeners();
+
+const handleCardDelete = (data) => {
+  popupDeleteCardConfirm.close(data);
+}
 //-------------------------------------------------------------------------------
 
 
@@ -197,7 +195,6 @@ buttonOpenEditAvatarPopup.addEventListener("click", openPopupEditAvatar);
 
 //Открытие popup ДОБАВЛЕНИЯ КАРТОЧКИ
 const openPopupAdd = function () {
-  formElementAdd.reset();
   validFormAddCard.resetValidation();
   popupAddCard.open();
 };

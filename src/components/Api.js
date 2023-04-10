@@ -33,7 +33,6 @@ export default class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
-      'Content-Type': 'application/json',
       body: JSON.stringify({
         name: data.name,
         about: data.job
@@ -58,8 +57,6 @@ export default class Api {
       method: 'POST',
       body: JSON.stringify(data),
       headers: this._headers,
-      'Content-Type': 'application/json'
-
     })
     .then(this._checkResponse);
   }

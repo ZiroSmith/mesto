@@ -1,16 +1,19 @@
 class Card {
-  constructor(data, clickImageHandler, template, {openPopupDeleteCard}, userId, api) {
+  constructor(data, clickImageHandler, handleCardDelete, template, {openPopupDeleteCard}, userId, api, closePopupDelete) {
     this._data = data;
     this._clickImageHandler = clickImageHandler;
+    this._handleCardDelete = handleCardDelete;
     this._template = template;
     this._openPopupDeleteCard = openPopupDeleteCard;
     this._userId = userId;
     this._api = api;
+    this._closePopupDelete = closePopupDelete;
     this._cardId = this._data._id;
     this._ownerId = this._data.owner._id;
     this._myLike = 0;
     this._likes = this._data.likes;
     this._likesQuantity = this._data.likes.length;
+    this._deleteButtonConfirm = document.querySelector(".form__save-button_delete");
   }
 
   _getTemplate() {
@@ -31,6 +34,7 @@ class Card {
     this._likeButton = this._element.querySelector(".card__like-button");
     this._likeNumber = this._element.querySelector('.card__like-number');
     this._deleteButton = this._element.querySelector(".card__del-button");
+    
 
     // Добавим данные
     this._linkImage.src = this._data.link;
@@ -63,6 +67,9 @@ class Card {
     this._api.removeCard(this._cardId)
     .then(() => {
       this._deleteButton.closest('.card').remove();
+    })
+    .then(() => {
+      this._handleCardDelete();
     })
     .catch((err) => alert(err));
   }
@@ -123,9 +130,9 @@ class Card {
     this._likeButton.addEventListener('click', () => {this._switchLike();})
 
     
-    this._deleteButton.addEventListener('click', () => {
-          this._openPopupDeleteCard();
-        });
+    this._deleteButton.addEventListener('click', () => { 
+      this._openPopupDeleteCard(); 
+    });
     
 
     this._linkImage.addEventListener('click', () => {
