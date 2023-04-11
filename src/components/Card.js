@@ -50,8 +50,8 @@ class Card {
       }
 
     if (this._checkMyLike()) {// если я лайкнул - лайк активен
-      this._handleToggleLike();
-      this._myLike++;
+      this._switchLike();
+
     }
     if (this._likesQuantity !== 0) {// Отображение кол-ва лайков
       this._likeNumber.textContent = this._likesQuantity;
@@ -100,10 +100,13 @@ class Card {
         this._likeNumber.textContent = this._likesQuantity;
       })
 
+      .then(() => {
+        this._handleToggleLike();
+        this._myLike++;
+      })
+
       .catch((err) => alert(err));
-      this._api.addLike(this._cardId);
-      this._handleToggleLike();
-      this._myLike++;
+
 
     } else {
       this._api.deleteLike(this._cardId)
@@ -118,9 +121,13 @@ class Card {
         }
       })
 
+      .then(() => {
+        this._handleToggleLike();
+        this._myLike--;
+      })
+
       .catch((err) => alert(err));
-      this._handleToggleLike();
-      this._myLike--;
+
     }
   }
 //------------------------------------------------------------------------------------

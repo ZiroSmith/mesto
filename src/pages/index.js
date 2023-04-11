@@ -15,7 +15,7 @@ import {
   nameSelector,
   jobSelector,
   avatarSelector
-} from "../components/constans.js";
+} from "../components/utils/constans.js";
 
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
@@ -86,6 +86,9 @@ const popupEditAvatar = new PopupWithForm(popupEditAvatarSelector, (data) => {
 
       .then((res) => {
         userInfo.setUserAvatar(res);
+      })
+
+      .then(() => {
         popupEditAvatar.close();
       })
 
@@ -109,6 +112,9 @@ const popupEditForm = new PopupWithForm(popupEditProfileSelector, (data) => {
 
       .then((res) => {
         userInfo.setUserInfo(res);
+      })
+
+      .then(() => {
         popupEditForm.close();
       })
 
@@ -128,13 +134,19 @@ const popupAddCard = new PopupWithForm(popupAddCardSelector,
   (data) => {
     popupAddCard.loading(true);
     api.addCard(data)
+
       .then((element) => {
         newSection.addItem(createCard(element), true);
+      })
+
+      .then(() => {
         popupAddCard.close();
       })
+
       .catch((err) => {
         console.error(err);
       })
+
       .finally(() => {
         popupAddCard.loading(false);
       });
