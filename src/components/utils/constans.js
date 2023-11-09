@@ -1,3 +1,4 @@
+//константы для валидации
 const validationConfig = {
   formSelector: ".form",
   inputSelector: ".form__input",
