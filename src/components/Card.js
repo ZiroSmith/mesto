@@ -134,14 +134,15 @@ class Card {
 
 //Слушатели событий
   _setEventListeners() {
+    //Кнопка лайка
     this._likeButton.addEventListener('click', () => {this._switchLike();})
 
-    
+    //Кнопка удаления
     this._deleteButton.addEventListener('click', () => { 
       this._openPopupDeleteCard(); 
     });
     
-
+  //Кнопка развертывания изображения
     this._linkImage.addEventListener('click', () => {
         this._clickImageHandler(this._data);
       });
