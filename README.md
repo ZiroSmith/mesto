@@ -16,7 +16,7 @@
 
 1. Склонируйте репозиторий
    ```sh
-   git clone https://github.com/KiryhaUdmurt/movies-explorer.git
+   git clone https://github.com/ZiroSmith/mesto
    ```
 2. Установите пакеты NPM
    ```sh
